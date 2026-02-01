@@ -34,14 +34,14 @@
             x-transition:enter-start="opacity-0 translate-y-8"
             x-transition:enter-end="opacity-100 translate-y-0"
         >
-            <h1 class="md:!text-6xl lg:text-7xl text-8xl mb-6 tracking-tight">
+            <h1 class="mb-6 tracking-tight">
         <span
-            class="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent">
+            class="md:!text-6xl lg:text-7xl text-8xl  bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent">
           Этот сайт создал ИИ
         </span>
                 <br/>
-                <span class="text-white mt-4 block">
-          Теперь твоя очередь понять его
+                <span class="md:!text-4xl lg:text-5xl text-7xl  text-white mt-4 block">
+          Теперь твоя очередь <br>понять его
         </span>
             </h1>
         </div>
