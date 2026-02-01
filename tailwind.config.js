@@ -11,13 +11,40 @@ export default {
 
     theme: {
         extend: {
+            keyframes: {
+                breathe: {
+                    '0%, 100%': {
+                        transform: 'scale(1)',
+                        opacity: '1',
+                    },
+                    '50%': {
+                        transform: 'scale(1.015)',
+                        opacity: '1',
+                    },
+                },
+                glow: {
+                    '0%, 100%': {
+                        boxShadow: '0 0 0 rgba(34,211,238,0)',
+                    },
+                    '50%': {
+                        boxShadow: '0 0 60px rgba(34,211,238,0.15)',
+                    },
+                },
+            },
+            animation: {
+                breathe: 'breathe 8s ease-in-out infinite',
+                glow: 'glow 8s ease-in-out infinite',
+            },
             fontFamily: {
-                sans: ['Lato', ...defaultTheme.fontFamily.sans],
+                sans: ['Onest', ...defaultTheme.fontFamily.sans],
             },
             colors: {
                 main_bg: '#ECEBF3',
-                maroon: {
-                    500: '#ECEBF3'
+                teal: {
+                    300: '#34CBC9'
+                },
+                dark: {
+                    300: '#262626'
                 }
             },
             screens: {

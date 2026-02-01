@@ -12,5 +12,13 @@ body {
 }
 
 h2 {
-    @apply font-[Forum] font-normal text-5xl;
+    @apply font-normal text-5xl;
+}
+
+.content {
+    @apply max-w-[1400px] mx-auto w-[90%];
+}
+
+.container {
+    @apply bg-white rounded-2xl;
 }

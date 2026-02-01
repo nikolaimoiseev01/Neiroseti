@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Livewire\Pages\Account\DashboardPage;
 use App\Livewire\Pages\Account\SettingsPage;
 use App\Livewire\Pages\Auth\ConfirmPasswordPage;
 use App\Livewire\Pages\Auth\ForgotPasswordPage;
@@ -9,24 +10,17 @@ use App\Livewire\Pages\Auth\RegisterPage;
 use App\Livewire\Pages\Auth\ResetPasswordPage;
 use App\Livewire\Pages\Auth\VerifyEmailPage;
 use App\Livewire\Pages\Portal\IndexPage;
+use App\Livewire\Pages\Portal\PaymentPage;
 use Illuminate\Support\Facades\Route;
 
 
 //region Auth Routes
-Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
-
-Route::view('profile', 'profile')
-    ->middleware(['auth'])
-    ->name('profile');
-
 Route::middleware('guest')->group(function () {
     Route::get('register', RegisterPage::class)
-        ->name('auth.register');
+        ->name('register');
 
     Route::get('login', LoginPage::class)
-        ->name('auth.login');
+        ->name('login');
 
     Route::get('forgot-password', ForgotPasswordPage::class)
         ->name('auth.password.request');
@@ -50,8 +44,19 @@ Route::middleware('auth')->group(function () {
 
 
 Route::get('/', IndexPage::class)->name('portal.index');
+Route::get('/payment', PaymentPage::class)->name('portal.payment');
+
+Route::post('/logout', function () {
+    auth()->logout();
+
+    request()->session()->invalidate();
+    request()->session()->regenerateToken();
+
+    return redirect('/login');
+})->name('logout');
 
 Route::middleware('auth')->prefix('account')->group(function () {
-    Route::get('settings', SettingsPage::class)->middleware(['auth', 'verified'])->name('account.settings');
+    Route::get('dashboard', DashboardPage::class)->name('account.dashboard');
+    Route::get('settings', SettingsPage::class)->name('account.settings');
 });
 
