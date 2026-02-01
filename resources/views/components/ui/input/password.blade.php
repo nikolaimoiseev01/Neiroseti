@@ -37,7 +37,7 @@
                 class="w-6 h-auto text-green-500 cursor-pointer transition hover:scale-110"/>
         </div>
     </div>
-    <x-Ui.input.error :messages="$errors->get($name)" class="mt-2"/>
+    <x-ui.input.error :messages="$errors->get($name)" class="mt-2"/>
 
 
     {{--    @error($name)--}}

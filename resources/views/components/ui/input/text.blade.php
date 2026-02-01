@@ -32,7 +32,7 @@
                                placeholder:text-gray-600"
     />
 
-    <x-Ui.input.error :messages="$errors->get($attributes->get('wire:model'))" class="mt-2"/>
+    <x-ui.input.error :messages="$errors->get($attributes->get('wire:model'))" class="mt-2"/>
 
     {{--    @error($attributes->get('wire:model'))--}}
     {{--    <p class="text-sm text-red-500">{{ $message }}</p>--}}
