@@ -11,29 +11,23 @@ export default {
 
     theme: {
         extend: {
+            backgroundSize: {
+                '200': '200% 200%',
+            },
             keyframes: {
-                breathe: {
-                    '0%, 100%': {
-                        transform: 'scale(1)',
-                        opacity: '1',
-                    },
-                    '50%': {
-                        transform: 'scale(1.015)',
-                        opacity: '1',
-                    },
+                gradient: {
+                    '0%, 100%': { 'background-position': '0% 50%' },
+                    '50%': { 'background-position': '100% 50%' },
                 },
-                glow: {
-                    '0%, 100%': {
-                        boxShadow: '0 0 0 rgba(34,211,238,0)',
-                    },
-                    '50%': {
-                        boxShadow: '0 0 60px rgba(34,211,238,0.15)',
-                    },
+                float: {
+                    '0%, 100%': { transform: 'translateY(0)' },
+                    '50%': { transform: 'translateY(-30px)' },
                 },
             },
             animation: {
-                breathe: 'breathe 8s ease-in-out infinite',
-                glow: 'glow 8s ease-in-out infinite',
+                gradient: 'gradient 12s ease infinite',
+                float: 'float 8s ease-in-out infinite',
+                'float-slow': 'float 14s ease-in-out infinite',
             },
             fontFamily: {
                 sans: ['Onest', ...defaultTheme.fontFamily.sans],

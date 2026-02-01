@@ -154,10 +154,12 @@
                 @endauth
 
                 @guest
-                    <button
-                        class="w-10 h-10 rounded-lg bg-white/5 border border-white/10 hover:border-cyan-500/50 flex items-center justify-center transition-colors">
+                    <a
+                        wire:navigate
+                        href="{{route('login')}}"
+                        class="w-10 h-10 md:hidden rounded-lg bg-white/5 border border-white/10 hover:border-cyan-500/50 flex items-center justify-center transition-colors">
                         <x-bi-person class="w-4 h-4 text-white"/>
-                    </button>
+                    </a>
                 @endguest
 
                 <!-- Mobile menu button -->

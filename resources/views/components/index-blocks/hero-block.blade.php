@@ -3,14 +3,24 @@
     x-init="init()"
     class="relative min-h-screen flex items-center justify-center overflow-hidden bg-black"
 >
-    <!-- Canvas -->
+    <!-- DESKTOP canvas -->
     <canvas
         x-ref="canvas"
+        x-show="isDesktop"
         class="absolute inset-0 w-full h-full"
     ></canvas>
 
-    <!-- Overlay gradient -->
-    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black pointer-events-none"></div>
+    <!-- MOBILE gradient -->
+    <div x-show="!isDesktop" class="absolute inset-0 pointer-events-none">
+        <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/20 via-blue-500/10 to-purple-600/20 bg-200 animate-gradient"></div>
+
+        <div class="absolute -top-24 -left-24 w-96 h-96 bg-cyan-500/30 rounded-full blur-[120px] animate-float"></div>
+        <div class="absolute bottom-0 right-0 w-96 h-96 bg-purple-500/30 rounded-full blur-[140px] animate-float-slow"></div>
+    </div>
+
+    <!-- Overlay -->
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/30 to-black"></div>
+
 
     <!-- Content -->
     <div class="relative z-10 max-w-5xl mx-auto px-6 text-center">
@@ -25,10 +35,11 @@
             x-transition:enter-end="opacity-100 translate-y-0"
         >
             <h1 class="md:!text-6xl lg:text-7xl text-8xl mb-6 tracking-tight">
-        <span class="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent">
+        <span
+            class="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent">
           Этот сайт создал ИИ
         </span>
-                <br />
+                <br/>
                 <span class="text-white mt-4 block">
           Теперь твоя очередь понять его
         </span>
@@ -70,7 +81,8 @@
             <button
                 class="group relative px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-lg overflow-hidden transition-all hover:scale-105"
             >
-                <div class="absolute inset-0 bg-gradient-to-r from-cyan-400 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <div
+                    class="absolute inset-0 bg-gradient-to-r from-cyan-400 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                 <span class="relative text-lg font-semibold text-white">
           Изучить модули
         </span>
@@ -79,7 +91,8 @@
             <button
                 class="group relative px-8 py-4 border-2 border-purple-500 rounded-lg overflow-hidden transition-all hover:scale-105"
             >
-                <div class="absolute inset-0 bg-purple-500 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <div
+                    class="absolute inset-0 bg-purple-500 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                 <span class="relative text-lg font-semibold text-white">
           Получить доступ за 100 ₽
         </span>
@@ -91,77 +104,89 @@
 <script>
     function heroNetwork() {
         return {
+            isDesktop: false,
             canvas: null,
             ctx: null,
             nodes: [],
+            rafId: null,
 
             init() {
-                this.canvas = this.$refs.canvas;
-                this.ctx = this.canvas.getContext('2d');
+                this.isDesktop = window.innerWidth > 1023
 
-                this.resize();
-                window.addEventListener('resize', () => this.resize());
+                window.addEventListener('resize', () => {
+                    const next = window.innerWidth > 1023
+                    if (next !== this.isDesktop) {
+                        this.isDesktop = next
+                        next ? this.startCanvas() : this.stopCanvas()
+                    }
+                })
 
-                for (let i = 0; i < 50; i++) {
-                    this.nodes.push({
-                        x: Math.random() * this.canvas.width,
-                        y: Math.random() * this.canvas.height,
-                        vx: (Math.random() - 0.5) * 0.5,
-                        vy: (Math.random() - 0.5) * 0.5
-                    });
+                if (this.isDesktop) {
+                    this.startCanvas()
                 }
+            },
 
-                requestAnimationFrame(() => this.animate());
+            startCanvas() {
+                this.canvas = this.$refs.canvas
+                this.ctx = this.canvas.getContext('2d')
+                this.resize()
+
+                this.nodes = Array.from({length: 50}).map(() => ({
+                    x: Math.random() * this.canvas.width,
+                    y: Math.random() * this.canvas.height,
+                    vx: (Math.random() - 0.5) * 0.5,
+                    vy: (Math.random() - 0.5) * 0.5
+                }))
+
+                this.animate()
+            },
+
+            stopCanvas() {
+                cancelAnimationFrame(this.rafId)
+                if (this.ctx) {
+                    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
+                }
             },
 
             resize() {
-                this.canvas.width = window.innerWidth;
-                this.canvas.height = window.innerHeight;
+                this.canvas.width = window.innerWidth
+                this.canvas.height = window.innerHeight
             },
 
             animate() {
-                const ctx = this.ctx;
-                const canvas = this.canvas;
+                const ctx = this.ctx
+                const canvas = this.canvas
 
-                ctx.fillStyle = 'rgba(0,0,0,0.05)';
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = 'rgba(0,0,0,0.05)'
+                ctx.fillRect(0, 0, canvas.width, canvas.height)
 
-                this.nodes.forEach((node, i) => {
-                    node.x += node.vx;
-                    node.y += node.vy;
+                this.nodes.forEach((n, i) => {
+                    n.x += n.vx
+                    n.y += n.vy
 
-                    if (node.x < 0 || node.x > canvas.width) node.vx *= -1;
-                    if (node.y < 0 || node.y > canvas.height) node.vy *= -1;
+                    if (n.x < 0 || n.x > canvas.width) n.vx *= -1
+                    if (n.y < 0 || n.y > canvas.height) n.vy *= -1
 
-                    this.nodes.forEach((other, j) => {
-                        if (i === j) return;
-
-                        const dx = node.x - other.x;
-                        const dy = node.y - other.y;
-                        const dist = Math.sqrt(dx * dx + dy * dy);
-
-                        if (dist < 150) {
-                            ctx.strokeStyle = `rgba(0,217,255,${(1 - dist / 150) * 0.3})`;
-                            ctx.lineWidth = 1;
-                            ctx.beginPath();
-                            ctx.moveTo(node.x, node.y);
-                            ctx.lineTo(other.x, other.y);
-                            ctx.stroke();
+                    this.nodes.forEach((o, j) => {
+                        if (i === j) return
+                        const d = Math.hypot(n.x - o.x, n.y - o.y)
+                        if (d < 150) {
+                            ctx.strokeStyle = `rgba(0,217,255,${(1 - d / 150) * 0.25})`
+                            ctx.beginPath()
+                            ctx.moveTo(n.x, n.y)
+                            ctx.lineTo(o.x, o.y)
+                            ctx.stroke()
                         }
-                    });
+                    })
 
-                    ctx.fillStyle = '#00D9FF';
-                    ctx.shadowBlur = 10;
-                    ctx.shadowColor = '#00D9FF';
-                    ctx.beginPath();
-                    ctx.arc(node.x, node.y, 2, 0, Math.PI * 2);
-                    ctx.fill();
-                    ctx.shadowBlur = 0;
-                });
+                    ctx.fillStyle = '#00D9FF'
+                    ctx.beginPath()
+                    ctx.arc(n.x, n.y, 2, 0, Math.PI * 2)
+                    ctx.fill()
+                })
 
-                requestAnimationFrame(() => this.animate());
+                this.rafId = requestAnimationFrame(() => this.animate())
             }
-        };
+        }
     }
 </script>
-

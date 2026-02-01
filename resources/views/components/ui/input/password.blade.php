@@ -28,13 +28,13 @@
             class="!absolute top-1/2 -translate-y-1/2 right-4"
             @click="show = !show" x-show="!show" text="Показать пароль">
             <x-bi-eye
-                class="w-6 h-auto text-green-500 cursor-pointer transition hover:scale-110"/>
+                class="w-5 h-auto text-gray-300 cursor-pointer transition hover:scale-110"/>
         </div>
         <div
             class="!absolute top-1/2 -translate-y-1/2 right-4"
             @click="show = !show" x-show="show" text="Скрыть пароль">
             <x-bi-eye-slash
-                class="w-6 h-auto text-green-500 cursor-pointer transition hover:scale-110"/>
+                class="w-5 h-auto text-gray-300 cursor-pointer transition hover:scale-110"/>
         </div>
     </div>
     <x-ui.input.error :messages="$errors->get($name)" class="mt-2"/>
