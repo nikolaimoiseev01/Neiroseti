@@ -109,11 +109,11 @@
             class="pt-8 border-t border-white/10 text-center"
         >
             <p class="text-gray-600 text-sm">
-                © 2026 AI Knowledge Platform. Структурированное понимание искусственного интеллекта.
+                © 2026 AI Нейросети-просто. Структурированное понимание искусственного интеллекта.
             </p>
-            <p class="text-gray-700 text-xs mt-2">
-                Создано с помощью ИИ для тех, кто хочет понять ИИ
-            </p>
+            <a download href="/fixed/oferta-public.pdf" class="text-gray-700 text-xs mt-2">
+                Публичная оферта
+            </a>
         </div>
 
     </div>
