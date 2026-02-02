@@ -70,9 +70,9 @@
                     </div>
 
                     <!-- Pay button -->
-                    <button
-                        @click="pay()"
-                        :disabled="loading"
+                    <a
+                        href="{{route('account.dashboard')}}"
+                        wire:navigate
                         class="w-full py-4 rounded-xl text-lg
                                bg-gradient-to-r from-cyan-500 to-purple-600
                                hover:scale-105 transition-transform
@@ -84,7 +84,7 @@
                         <span x-show="!loading">
                             Оплатить 100 ₽</span>
                         <span x-show="loading">Оплата…</span>
-                    </button>
+                    </a>
 
                     <div class="mt-4 text-center text-xs text-gray-500">
                         Безопасная оплата • Возврат в течение 14 дней

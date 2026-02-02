@@ -25,7 +25,7 @@
                 <span
                     class="sm:hidden inline bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent"
                 >
-                    ИИ по делу
+                    Нейросети-просто
                 </span>
             </a>
 
@@ -117,6 +117,7 @@
                                 <!-- Account -->
                                 <a
                                     href="{{route('account.dashboard')}}"
+                                    wire:navigate
                                     class="block px-4 py-2 text-sm text-gray-300
                        hover:bg-white/5 hover:text-white transition-colors"
                                 >
@@ -126,6 +127,7 @@
                                 <!-- Settings -->
                                 <!-- Settings -->
                                 <a
+                                    wire:navigate
                                     href="{{route('account.settings')}}"
                                     class="block px-4 py-2 text-sm text-gray-300
                        hover:bg-white/5 hover:text-white transition-colors"

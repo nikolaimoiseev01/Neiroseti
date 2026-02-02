@@ -7,7 +7,7 @@ use Livewire\Component;
 
 class DashboardPage extends Component
 {
-    public $isPaid = false;
+    public $isPaid = true;
     public $modules;
     public $stats;
 
@@ -31,12 +31,12 @@ class DashboardPage extends Component
             [
                 'name' => 'Прогресс',
                 'value' => 1,
-                'color' => 'text-blue-400'
+                'color' => 'text-cyan-400'
             ],
             [
                 'name' => 'Доступно',
                 'value' => 1,
-                'color' => 'text-pink-400'
+                'color' => 'text-purple-400'
             ]
         ];
         $this->modules = Module::with('lessons')->get();

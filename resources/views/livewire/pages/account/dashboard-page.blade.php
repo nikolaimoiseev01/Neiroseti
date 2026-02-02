@@ -101,7 +101,7 @@
                         class="border-t border-white/10"
                     >
                         @foreach($module->lessons as $i => $lesson)
-                            <div class="border-b border-white/5 last:border-b-0">
+                            <a href="{{route('account.lesson', $lesson['id'])}}" class="border-b border-white/5 last:border-b-0">
                                 <button
                                     wire:click="openLesson('{{ $module['id'] }}', '{{ $lesson['id'] }}')"
                                     class="w-full p-6 pl-20 flex items-center gap-4 hover:bg-white/5 transition-colors"
@@ -123,7 +123,7 @@
                                         <x-bi-clock class="w-4 h-4"/> 10
                                     </div>
                                 </button>
-                            </div>
+                            </a>
                         @endforeach
                     </div>
                 </div>

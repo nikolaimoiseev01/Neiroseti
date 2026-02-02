@@ -39,7 +39,8 @@
             x-transition:enter-end="opacity-100 translate-y-0"
             class="flex justify-center mb-12"
         >
-            <button
+            <a
+                href="{{route('portal.payment')}}" wire:navigate
                 class="
                     px-12 py-5 rounded-xl text-xl sm:text-lg
                     bg-gradient-to-r from-cyan-500 to-purple-600
@@ -48,7 +49,7 @@
                 "
             >
                 Начать за 100 ₽
-            </button>
+            </a>
         </div>
 
         <!-- links -->

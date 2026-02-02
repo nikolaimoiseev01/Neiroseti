@@ -8,7 +8,7 @@
 }
 
 body {
-    @apply bg-main_bg;
+    @apply bg-main_bg text-white;
 }
 
 h2 {

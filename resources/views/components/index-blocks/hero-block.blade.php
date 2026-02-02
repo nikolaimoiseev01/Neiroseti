@@ -78,7 +78,7 @@
             x-transition
             class="flex md:flex-col gap-4 justify-center items-center"
         >
-            <button
+            <a href="/#modules"
                 class="group relative px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-lg overflow-hidden transition-all hover:scale-105"
             >
                 <div
@@ -86,9 +86,9 @@
                 <span class="relative text-lg font-semibold text-white">
           Изучить модули
         </span>
-            </button>
+            </a>
 
-            <button
+            <a href="{{route('portal.payment')}}" wire:navigate
                 class="group relative px-8 py-4 border-2 border-purple-500 rounded-lg overflow-hidden transition-all hover:scale-105"
             >
                 <div
@@ -96,7 +96,7 @@
                 <span class="relative text-lg font-semibold text-white">
           Получить доступ за 100 ₽
         </span>
-            </button>
+            </a>
         </div>
     </div>
 </section>

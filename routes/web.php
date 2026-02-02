@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Livewire\Pages\Account\DashboardPage;
+use App\Livewire\Pages\Account\LessonPage;
 use App\Livewire\Pages\Account\SettingsPage;
 use App\Livewire\Pages\Auth\ConfirmPasswordPage;
 use App\Livewire\Pages\Auth\ForgotPasswordPage;
@@ -57,6 +58,7 @@ Route::post('/logout', function () {
 
 Route::middleware('auth')->prefix('account')->group(function () {
     Route::get('dashboard', DashboardPage::class)->name('account.dashboard');
+    Route::get('lesson/{id}', LessonPage::class)->name('account.lesson');
     Route::get('settings', SettingsPage::class)->name('account.settings');
 });
 
