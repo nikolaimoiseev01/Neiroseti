@@ -111,9 +111,14 @@
             <p class="text-gray-600 text-sm">
                 © 2026 AI Нейросети-просто. Структурированное понимание искусственного интеллекта.
             </p>
-            <a download href="/fixed/oferta-public.pdf" class="text-gray-700 text-xs mt-2">
-                Публичная оферта
-            </a>
+            <div class="flex gap-2 mx-auto text-center justify-center">
+                <a download href="/fixed/contacts-public.pdf" class="text-gray-700 text-sm mt-2">
+                    Контактные данные и реквизиты
+                </a>
+                <a download href="/fixed/oferta-public.pdf" class="text-gray-700 text-sm mt-2">
+                    Публичная оферта
+                </a>
+            </div>
         </div>
 
     </div>
