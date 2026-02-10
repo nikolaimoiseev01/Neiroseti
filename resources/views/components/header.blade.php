@@ -16,11 +16,12 @@
                 wire:navigate
                 class="flex items-center gap-2 text-2xl"
             >
-                <div
-                    class="w-10 h-10 rounded-lg bg-gradient-to-br from-cyan-500 to-purple-600 flex items-center justify-center shadow-lg shadow-cyan-500/30"
-                >
-                    <span class="text-white text-xl">AI</span>
-                </div>
+{{--                <div--}}
+{{--                    class="w-10 h-10 rounded-lg bg-gradient-to-br from-cyan-500 to-purple-600 flex items-center justify-center shadow-lg shadow-cyan-500/30"--}}
+{{--                >--}}
+{{--                    <span class="text-white text-xl">AI</span>--}}
+{{--                </div>--}}
+                <x-logo class="w-16"/>
 
                 <span
                     class="sm:hidden inline bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent"
