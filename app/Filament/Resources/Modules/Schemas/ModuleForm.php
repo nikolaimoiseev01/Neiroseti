@@ -1,15 +1,13 @@
 <?php
 
-namespace App\Filament\Resources\Lessons\Schemas;
+namespace App\Filament\Resources\Modules\Schemas;
 
-use Filament\Forms\Components\RichEditor;
-use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 
-class LessonForm
+class ModuleForm
 {
     public static function configure(Schema $schema): Schema
     {
@@ -17,17 +15,13 @@ class LessonForm
             ->components([
                 Section::make()->schema([
                     TextInput::make('title')
-                        ->label('Название урока')
+                        ->label('Название')
                         ->required(),
-                    Select::make('module_id')
-                        ->relationship('module', 'title')
-                        ->label('Модуль')
+                    TextInput::make('color')
+                        ->disabled()
                         ->required(),
                     TextInput::make('description')
                         ->label('Краткое описание')
-                        ->required(),
-                    RichEditor::make('content')
-                        ->label('Содержание')
                         ->required(),
                 ])->columnSpanFull()
             ]);
