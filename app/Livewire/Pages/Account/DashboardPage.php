@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Pages\Account;
 
+use App\Models\Lesson;
 use App\Models\Module;
 use Livewire\Component;
 
@@ -17,15 +18,16 @@ class DashboardPage extends Component
     }
 
     public function mount() {
+        $this->modules = Module::with('lessons')->get();
         $this->stats = [
             [
                 'name' => 'Модулей',
-                'value' => 1,
+                'value' => count($this->modules),
                 'color' => 'text-cyan-400'
             ],
             [
                 'name' => 'Уроков',
-                'value' => 1,
+                'value' => Lesson::count(),
                 'color' => 'text-purple-400'
             ],
             [
@@ -39,6 +41,5 @@ class DashboardPage extends Component
                 'color' => 'text-purple-400'
             ]
         ];
-        $this->modules = Module::with('lessons')->get();
     }
 }

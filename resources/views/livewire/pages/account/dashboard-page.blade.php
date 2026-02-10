@@ -70,7 +70,7 @@
                         </div>
 
                         <div class="flex-1 text-left">
-                            <h3 class="text-2xl mb-1 text-white">{{ $module['name'] }}</h3>
+                            <h3 class="text-2xl mb-1 text-white">{{ $module['title'] }}</h3>
                             <p class="text-sm text-gray-400">{{ $module['description'] }}</p>
 
                             <div class="flex items-center gap-4 mt-2">

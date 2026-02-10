@@ -22,3 +22,10 @@ h2 {
 .container {
     @apply bg-white rounded-2xl;
 }
+
+ol, ul, menu
+{
+ list-style: inherit;
+ margin: inherit;
+ padding: inherit;
+}

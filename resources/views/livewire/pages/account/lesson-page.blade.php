@@ -79,10 +79,24 @@
                     <h1 class="text-4xl mb-4 text-white" x-text="lesson.title"></h1>
                     <p class="text-xl text-gray-400" x-text="lesson.description"></p>
                 </div>
-                <section>
-
-                </section>
-                {!! $lesson->content !!}
+                <article
+                    class="
+        prose prose-lg prose-invert max-w-none
+        prose-h2:text-2xl
+        prose-h3:text-xl
+        prose-h3:mt-10
+        prose-h3:font-semibold
+        prose-p:leading-relaxed
+        prose-ul:my-6
+        prose-li:my-2
+        prose-pre:bg-gray-900
+        prose-pre:rounded-xl
+        prose-pre:p-5
+        prose-pre:text-base
+    "
+                >
+                    {!! $lesson->content !!}
+                </article>
             </div>
         </template>
     </div>

@@ -1,5 +1,6 @@
 import defaultTheme from 'tailwindcss/defaultTheme';
 import forms from '@tailwindcss/forms';
+import typography from '@tailwindcss/typography'
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -8,7 +9,21 @@ export default {
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
     ],
-
+    safelist: [
+        'bg-gradient-to-br',
+        'from-indigo-500',
+        'to-purple-600',
+        'from-cyan-500',
+        'to-blue-600',
+        'from-pink-500',
+        'to-rose-600',
+        'from-emerald-500',
+        'to-teal-600',
+        'from-amber-500',
+        'to-orange-600',
+        'from-slate-600',
+        'to-gray-800',
+    ],
     theme: {
         extend: {
             backgroundSize: {
@@ -50,5 +65,5 @@ export default {
             },
         },
     },
-    plugins: [forms],
+    plugins: [forms, typography],
 };
