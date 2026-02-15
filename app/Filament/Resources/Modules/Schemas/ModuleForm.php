@@ -18,8 +18,7 @@ class ModuleForm
                         ->label('Название')
                         ->required(),
                     TextInput::make('color')
-                        ->disabled()
-                        ->required(),
+                        ->disabled(),
                     TextInput::make('description')
                         ->label('Краткое описание')
                         ->required(),
