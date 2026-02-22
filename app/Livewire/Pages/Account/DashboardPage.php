@@ -18,7 +18,12 @@ class DashboardPage extends Component
     }
 
     public function mount() {
-        $this->modules = Module::with('lessons')->get();
+        $this->modules = Module::query()
+            ->with(['lessons' => function ($query) {
+                $query->orderBy('order');
+            }])
+            ->orderBy('order')
+            ->get();
         $this->stats = [
             [
                 'name' => 'Модулей',

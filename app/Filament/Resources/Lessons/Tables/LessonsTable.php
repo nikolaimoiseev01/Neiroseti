@@ -35,6 +35,8 @@ class LessonsTable
             ->filters([
                 //
             ])
+            ->reorderable('order')
+            ->defaultSort('order')
             ->recordActions([
                 EditAction::make(),
             ])

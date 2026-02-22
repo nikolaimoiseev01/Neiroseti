@@ -32,6 +32,8 @@ class ModulesTable
             ->filters([
                 //
             ])
+            ->reorderable('order')
+            ->defaultSort('order')
             ->recordActions([
                 EditAction::make(),
             ])
