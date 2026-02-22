@@ -157,4 +157,8 @@ return [
     */
 
     'pagination_theme' => 'tailwind',
+
+    'payload' => [
+        'max_nesting_depth' => 30,
+    ],
 ];
