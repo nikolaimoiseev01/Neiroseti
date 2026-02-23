@@ -15,7 +15,7 @@ class Modules extends Component
     public $modules;
     public function __construct()
     {
-        $this->modules = Module::with('lessons')->withCount('lessons')->get();
+        $this->modules = Module::with('lessons')->orderBy('order')->withCount('lessons')->get();
     }
 
     /**
