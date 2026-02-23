@@ -68,7 +68,7 @@
                         <div
                             class="flex items-center justify-between pt-4 border-t border-white/10">
                             <span class="text-sm text-gray-500">
-                                {{$module['lessons_count']}} уроков
+                                уроков: {{$module['lessons_count']}}
                             </span>
 
                             <div
