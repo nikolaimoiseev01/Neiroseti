@@ -36,13 +36,8 @@ class DashboardPage extends Component
                 'color' => 'text-purple-400'
             ],
             [
-                'name' => 'Прогресс',
-                'value' => 1,
-                'color' => 'text-cyan-400'
-            ],
-            [
                 'name' => 'Доступно',
-                'value' => 1,
+                'value' => 0,
                 'color' => 'text-purple-400'
             ]
         ];
