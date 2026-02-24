@@ -86,19 +86,10 @@
                 <div x-show="!isLogin" x-transition>
                     <x-ui.input.password
                         name="password_confirmation"
-                        label="Пароль"
+                        label="Подтверждение пароля"
                         autocomplete="password_confirmation"
                         wire:model="password_confirmation"
                     />
-                </div>
-
-                <!-- Remember -->
-                <div x-show="isLogin" class="flex justify-between text-sm">
-                    <label class="flex items-center gap-2 text-gray-400">
-                        <input type="checkbox" class="rounded bg-white/5 border-white/10">
-                        Запомнить меня
-                    </label>
-                    <button type="button" class="text-cyan-400">Забыли пароль?</button>
                 </div>
 
                 <!-- Submit -->
