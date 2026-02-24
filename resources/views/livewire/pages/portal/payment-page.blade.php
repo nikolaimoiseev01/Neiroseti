@@ -83,10 +83,9 @@
                                        disabled:opacity-50 disabled:cursor-not-allowed text-white"
                             >
                                 <x-bi-lock class="w-5 h-5" />
-                                <span x-show="!loading">
+                                <span>
                                     Оплатить {{ \App\Models\Transaction::FULL_ACCESS_PRICE }} ₽
                                 </span>
-                                <span x-show="loading">Оплата…</span>
                             </a>
 
                             <div class="mt-4 text-center text-xs text-gray-500">

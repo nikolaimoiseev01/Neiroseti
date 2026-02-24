@@ -29,19 +29,24 @@ class PaymentPage extends Component
 
     public function createPayment()
     {
-        $paymentService = new PaymentService();
-        $userId = Auth::user()->id;
-        $description = "Покупка полного доступа 'Нейросети-просто' (user_id=$userId)";
-        $transactionData = [
-            'type' => TransactionTypeEnums::FULL_ACCESS->value,
-            'description' => $description,
-        ];
-        $urlRedirect = route('account.dashboard')  . '?confirm_payment=full_access_granted';
-        $paymentUrl = $paymentService->createPayment(
-            amount: Transaction::FULL_ACCESS_PRICE,
-            urlRedirect: $urlRedirect,
-            transactionData: $transactionData
-        );
-        $this->redirect($paymentUrl);
+        if(Auth::check()) {
+
+            $paymentService = new PaymentService();
+            $userId = Auth::user()->id;
+            $description = "Покупка полного доступа 'Нейросети-просто' (user_id=$userId)";
+            $transactionData = [
+                'type' => TransactionTypeEnums::FULL_ACCESS->value,
+                'description' => $description,
+            ];
+            $urlRedirect = route('account.dashboard')  . '?confirm_payment=full_access_granted';
+            $paymentUrl = $paymentService->createPayment(
+                amount: Transaction::FULL_ACCESS_PRICE,
+                urlRedirect: $urlRedirect,
+                transactionData: $transactionData
+            );
+            $this->redirect($paymentUrl);
+        } else {
+            $this->redirect('login', navigate: true);
+        }
     }
 }
