@@ -103,7 +103,6 @@
                         @foreach($module->lessons as $i => $lesson)
                             <a href="{{route('account.lesson', $lesson['id'])}}" wire:navigate class="border-b border-white/5 last:border-b-0">
                                 <button
-                                    wire:click="openLesson('{{ $module['id'] }}', '{{ $lesson['id'] }}')"
                                     class="w-full p-6 pl-20 flex items-center gap-4 hover:bg-white/5 transition-colors"
                                 >
                                     <div class="w-10 h-10 rounded-lg flex items-center justify-center
