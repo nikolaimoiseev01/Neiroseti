@@ -97,7 +97,7 @@
                     <span class="text-cyan-400 text-4xl sm:text-3xl">{{\App\Models\Transaction::FULL_ACCESS_PRICE}} ₽</span>
                 </p>
                 <p class="text-gray-500">
-                    Абсурдная ценность за минимальную цену
+                    Максимальная ценность за минимальную цену
                 </p>
             </div>
         </div>

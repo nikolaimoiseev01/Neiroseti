@@ -114,7 +114,7 @@
                                     </svg>
                                 </div>
                                 <div>
-                                    <h3 class="text-xl mb-2 text-white">Абсурдная ценность</h3>
+                                    <h3 class="text-xl mb-2 text-white">Максимальная ценность</h3>
                                     <p class="text-gray-400 text-sm leading-relaxed">
                                         Знания, собранные из сотен источников, систематизированные и
                                         объяснённые — всё это обычно стоит тысячи рублей.
