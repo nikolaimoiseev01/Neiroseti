@@ -13,6 +13,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Onest:wght@100..900&display=swap" rel="stylesheet">
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <script>
+        document.addEventListener('alpine:init', () => {
+            Alpine.store('user', {
+                id: @js(auth()->id()),
+                name: @js(auth()->user()->name),
+                is_full_access: @js(auth()->user()->is_full_access), // любое поле из таблицы users
+            })
+        })
+    </script>
 </head>
 <body class="antialiased flex flex-col min-h-screen">
 <x-header/>

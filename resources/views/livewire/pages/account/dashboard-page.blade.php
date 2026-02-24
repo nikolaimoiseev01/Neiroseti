@@ -101,7 +101,7 @@
                         class="border-t border-white/10"
                     >
                         @foreach($module->lessons as $i => $lesson)
-                            <a href="{{route('account.lesson', $lesson['id'])}}" class="border-b border-white/5 last:border-b-0">
+                            <a href="{{route('account.lesson', $lesson['id'])}}" wire:navigate class="border-b border-white/5 last:border-b-0">
                                 <button
                                     wire:click="openLesson('{{ $module['id'] }}', '{{ $lesson['id'] }}')"
                                     class="w-full p-6 pl-20 flex items-center gap-4 hover:bg-white/5 transition-colors"
@@ -137,17 +137,18 @@
                         border border-cyan-500/30 text-center">
                 <h3 class="text-3xl mb-4 text-white">Получите полный доступ</h3>
                 <p class="text-gray-400 mb-6 max-w-2xl mx-auto">
-                    Разблокируйте 10 уроков
+                    Разблокируйте {{count($this->lessons)}} уроков
                     за <span class="text-cyan-400 text-2xl">100 ₽</span>
                 </p>
 
-                <button
-                    wire:click="goToPayment"
+                <a
+                    wire:navigate
+                    href="{{route('portal.payment')}}"
                     class="px-8 py-4 bg-gradient-to-r from-cyan-500 to-purple-600
                            rounded-xl text-lg hover:scale-105 transition-transform"
                 >
                     Оплатить сейчас
-                </button>
+                </a>
             </div>
         @endunless
     </div>

@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Pages\Account;
 
+use App\Models\Transaction;
 use Livewire\Component;
 
 use App\Livewire\Actions\Logout;
@@ -17,7 +18,7 @@ class SettingsPage extends Component
     public string $email = 'user@example.com';
     public bool $isPaid = true;
 
-    public array $transactions = [];
+    public $transactions;
 
     public function render()
     {
@@ -26,19 +27,13 @@ class SettingsPage extends Component
 
     public function mount()
     {
-        $this->name = Auth::user()->name;
-        $this->email = Auth::user()->email;
+        $user = Auth::user();
+        $this->name = $user->name;
+        $this->email = $user->email;
+        $this->isPaid = $user->is_full_access;
 
         if ($this->isPaid) {
-            $this->transactions = [
-                [
-                    'id' => '1',
-                    'date' => '2026-02-02',
-                    'description' => 'Полный доступ к платформе AI Knowledge',
-                    'amount' => '100 ₽',
-                    'status' => 'completed',
-                ],
-            ];
+            $this->transactions = Transaction::where('user_id', Auth::id())->get();
         }
     }
 

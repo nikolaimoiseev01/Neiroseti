@@ -91,7 +91,7 @@
                     <p class="text-5xl sm:text-4xl">
                         <span class="text-gray-400">всего</span>
                         <span class="bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
-                            100 ₽
+                            {{\App\Models\Transaction::FULL_ACCESS_PRICE}} ₽
                         </span>
                     </p>
                 </div>

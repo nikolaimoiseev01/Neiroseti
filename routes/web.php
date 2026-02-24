@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Http\Controllers\PaymentController;
 use App\Livewire\Pages\Account\DashboardPage;
 use App\Livewire\Pages\Account\LessonPage;
 use App\Livewire\Pages\Account\SettingsPage;
@@ -62,3 +63,4 @@ Route::middleware('auth')->prefix('account')->group(function () {
     Route::get('settings', SettingsPage::class)->name('account.settings');
 });
 
+Route::match(['POST', 'GET'], '/payments/callback', [PaymentController::class, 'callback']);

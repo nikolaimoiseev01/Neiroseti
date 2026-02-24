@@ -4,12 +4,14 @@ namespace App\Livewire\Pages\Account;
 
 use App\Models\Lesson;
 use App\Models\Module;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class DashboardPage extends Component
 {
-    public $isPaid = true;
+    public $isPaid;
     public $modules;
+    public $lessons;
     public $stats;
 
     public function render()
@@ -24,6 +26,8 @@ class DashboardPage extends Component
             }])
             ->orderBy('order')
             ->get();
+        $this->lessons = Lesson::all();
+        $this->isPaid = Auth::user()->is_full_access;
         $this->stats = [
             [
                 'name' => 'Модулей',

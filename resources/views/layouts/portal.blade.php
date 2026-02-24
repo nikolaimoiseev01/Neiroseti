@@ -19,6 +19,15 @@
     <meta name="apple-mobile-web-app-title" content="MyWebSite" />
     <link rel="manifest" href="/fixed/favicon/site.webmanifest" />
 
+        <script>
+            document.addEventListener('alpine:init', () => {
+                Alpine.store('user', {
+                    id: @js(auth()->id()),
+                    name: @js(auth()->user()->name),
+                    is_full_access: @js(auth()->user()->is_full_access), // любое поле из таблицы users
+                })
+            })
+        </script>
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>

@@ -99,7 +99,7 @@
                 <div class="p-8 rounded-2xl bg-white/5 border border-white/10">
                     <h2 class="text-2xl text-white mb-6">История транзакций</h2>
 
-                    @if(count($transactions))
+                    @if(count($transactions ?? []))
                         <div class="space-y-4">
                             @foreach($transactions as $tx)
                                 <div class="p-6 rounded-xl bg-white/5 border border-white/10">
@@ -110,7 +110,7 @@
                                         </div>
                                         <div class="text-right">
                                             <div class="text-xl text-cyan-400">{{ $tx['amount'] }}</div>
-                                            <div class="text-xs text-green-400">Завершено</div>
+                                            <div class="text-xs text-green-400">{{$tx['status']}}</div>
                                         </div>
                                     </div>
                                 </div>

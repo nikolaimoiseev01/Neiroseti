@@ -57,7 +57,7 @@
             <div class="flex items-center gap-4">
 
                 <!-- Pay / Access -->
-                <template x-if="!isPaid">
+                <template x-if="!$store.user.is_full_access">
                     <a
                         wire:navigate
                         href="{{route('portal.payment')}}"
@@ -68,7 +68,7 @@
                     </a>
                 </template>
 
-                <template x-if="isPaid">
+                <template x-if="$store.user.is_full_access">
                     <div
                         class="sm:hidden flex items-center gap-2 px-4 py-2 bg-green-500/20 border border-green-500/50 rounded-lg text-sm text-green-400"
                     >
@@ -197,7 +197,7 @@
                 ></button>
             </template>
 
-            <template x-if="!isPaid">
+            <template x-if="!$store.user.is_full_access">
                 <a
                     href="{{route('portal.payment')}}"
                     class="flex items-center justify-center gap-2 w-full px-6 py-3 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-lg text-sm"
@@ -214,7 +214,6 @@
         return {
             isScrolled: false,
             isMobileMenuOpen: false,
-            isPaid: false,
             currentPage: null,
 
             navItems: [

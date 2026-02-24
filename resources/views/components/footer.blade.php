@@ -15,7 +15,7 @@
         <div
             x-data="{ show: false }"
             x-init="setTimeout(() => show = true, 100)"
-            x-show="show"
+            x-show="show && !$store.user.is_full_access"
             x-transition:enter="transition ease-out duration-700"
             x-transition:enter-start="opacity-0 translate-y-6"
             x-transition:enter-end="opacity-100 translate-y-0"
@@ -33,7 +33,7 @@
         <div
             x-data="{ show: false }"
             x-init="setTimeout(() => show = true, 250)"
-            x-show="show"
+            x-show="show && !$store.user.is_full_access"
             x-transition:enter="transition ease-out duration-700"
             x-transition:enter-start="opacity-0 translate-y-6"
             x-transition:enter-end="opacity-100 translate-y-0"
@@ -51,55 +51,6 @@
                 Начать за 100 ₽
             </a>
         </div>
-
-        <!-- links -->
-{{--        <div--}}
-{{--            x-data="{ show: false }"--}}
-{{--            x-init="setTimeout(() => show = true, 400)"--}}
-{{--            x-show="show"--}}
-{{--            x-transition.opacity.duration-700--}}
-{{--            class="--}}
-{{--                grid grid-cols-3--}}
-{{--                lg:grid-cols-2--}}
-{{--                sm:grid-cols-1--}}
-{{--                gap-8--}}
-{{--                text-center lg:text-left--}}
-{{--                mb-12--}}
-{{--            "--}}
-{{--        >--}}
-{{--            <div>--}}
-{{--                <h4 class="text-sm uppercase tracking-wider text-gray-500 mb-4">--}}
-{{--                    Платформа--}}
-{{--                </h4>--}}
-{{--                <ul class="space-y-2">--}}
-{{--                    <li><a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors">О проекте</a></li>--}}
-{{--                    <li><a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors">Модули</a></li>--}}
-{{--                    <li><a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors">Преподаватели</a></li>--}}
-{{--                </ul>--}}
-{{--            </div>--}}
-
-{{--            <div>--}}
-{{--                <h4 class="text-sm uppercase tracking-wider text-gray-500 mb-4">--}}
-{{--                    Ресурсы--}}
-{{--                </h4>--}}
-{{--                <ul class="space-y-2">--}}
-{{--                    <li><a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors">База знаний</a></li>--}}
-{{--                    <li><a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors">Сообщество</a></li>--}}
-{{--                    <li><a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors">Блог</a></li>--}}
-{{--                </ul>--}}
-{{--            </div>--}}
-
-{{--            <div>--}}
-{{--                <h4 class="text-sm uppercase tracking-wider text-gray-500 mb-4">--}}
-{{--                    Поддержка--}}
-{{--                </h4>--}}
-{{--                <ul class="space-y-2">--}}
-{{--                    <li><a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors">Помощь</a></li>--}}
-{{--                    <li><a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors">Контакты</a></li>--}}
-{{--                    <li><a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors">Политика</a></li>--}}
-{{--                </ul>--}}
-{{--            </div>--}}
-{{--        </div>--}}
 
         <!-- bottom -->
         <div

@@ -56,7 +56,7 @@
         >
             Структурированная система знаний об ИИ: нейросети, модели и концепции —
             всё в одном месте, всего за
-            <span class="text-cyan-400 font-semibold">100 рублей</span>
+            <span class="text-cyan-400 font-semibold">{{\App\Models\Transaction::FULL_ACCESS_PRICE}} рублей</span>
         </p>
 
         <!-- Description -->
@@ -95,7 +95,7 @@
                 <div
                     class="absolute inset-0 bg-purple-500 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                 <span class="relative text-lg font-semibold text-white">
-          Получить доступ за 100 ₽
+          Получить доступ за {{\App\Models\Transaction::FULL_ACCESS_PRICE}} ₽
         </span>
             </a>
         </div>

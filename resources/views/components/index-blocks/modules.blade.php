@@ -13,7 +13,6 @@
 
         <!-- modules grid -->
         <div
-            x-data="learningModules()"
             class="
                 grid grid-cols-3
                 lg:grid-cols-2
@@ -21,10 +20,10 @@
                 gap-6
             "
         >
-            @foreach($modules as $module)
+            @foreach($modules as $i => $module)
 
                 <div
-                    x-data="{ show: true }"
+                    x-data="{ show: false, index: {{ $i }} }"
                     x-init="setTimeout(() => show = true, index * 120)"
                     x-show="show"
                     x-transition:enter="transition ease-out duration-500"
@@ -81,7 +80,7 @@
         </div>
 
         <!-- price block -->
-        <div class="mt-16 text-center">
+        <div x-show="!$store.user.is_full_access" class="mt-16 text-center">
             <div
                 x-data="{ show: false }"
                 x-init="setTimeout(() => show = true, 800)"
@@ -95,7 +94,7 @@
             >
                 <p class="text-2xl sm:text-xl mb-4">
                     <span class="text-gray-400">Полный доступ ко всем модулям:</span>
-                    <span class="text-cyan-400 text-4xl sm:text-3xl">100 ₽</span>
+                    <span class="text-cyan-400 text-4xl sm:text-3xl">{{\App\Models\Transaction::FULL_ACCESS_PRICE}} ₽</span>
                 </p>
                 <p class="text-gray-500">
                     Абсурдная ценность за минимальную цену
