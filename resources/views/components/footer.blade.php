@@ -64,7 +64,7 @@
                 © 2026 AI Нейросети-просто. Все права защищены, а данные взяты из открытых источников.
             </p>
             <p class="text-gray-600 text-sm">
-                Контакт: main@neiroseti-prosto.ru
+                Контактные данные: main@neiroseti-prosto.ru
             </p>
             <div class="flex gap-2 mx-auto text-center justify-center">
                 <a download href="/fixed/contacts-public.pdf" class="text-gray-700 text-sm mt-2">
