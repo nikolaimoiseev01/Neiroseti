@@ -127,7 +127,7 @@ class LoginPage extends Component
         $validated['password'] = Hash::make($validated['password']);
 
         event(new Registered($user = User::create($validated)));
-
+        $user->assignRole('User');
         Auth::login($user);
 
         $this->redirect(route('account.dashboard', absolute: false), navigate: true);
