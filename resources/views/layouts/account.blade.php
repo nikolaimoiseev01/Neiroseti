@@ -32,8 +32,8 @@
         document.addEventListener('alpine:init', () => {
             Alpine.store('user', {
                 id: @js(auth()->id()),
-                name: @js(auth()->user()->name),
-                is_full_access: @js(auth()->user()->is_full_access), // любое поле из таблицы users
+                name: @js(auth()->check() ? auth()->user()->name : null),
+                is_full_access: @js(auth()->check() ? auth()->user()->is_full_access : false),
             })
         })
     </script>

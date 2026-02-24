@@ -1,7 +1,7 @@
 <div
     x-data="authComponent()"
     x-init="initCanvas()"
-    class="min-h-screen bg-black flex items-center justify-center px-6 relative overflow-hidden"
+    class="min-h-screen bg-black pt-32 pb-16 px-6 flex items-center justify-center"
 >
 
     <!-- Canvas background -->
@@ -18,13 +18,6 @@
     <div
         class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500 rounded-full blur-[150px] opacity-20"></div>
 
-    <!-- Back -->
-    <button
-        @click="back()"
-        class="absolute top-6 left-6 text-gray-400 hover:text-white transition-colors z-20"
-    >
-        ← Назад
-    </button>
 
     <!-- Card -->
     <div class="relative z-10 w-full max-w-md">
