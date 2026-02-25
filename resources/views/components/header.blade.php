@@ -34,17 +34,15 @@
             <nav class="md:hidden flex items-center gap-8">
                 <template x-for="item in navItems" :key="item.value">
                     <a
-                        wire:navigate
-                          @click="navigate(item.value)"
                         :href="item.href"
+                        @click.prevent="handleNav(item)"
                         class="relative text-sm transition-colors"
                         :class="currentPage === item.value
-                            ? 'text-cyan-400'
-                            : 'text-gray-400 hover:text-white'"
+                ? 'text-cyan-400'
+                : 'text-gray-400 hover:text-white'"
                     >
                         <span x-text="item.label"></span>
 
-                        <!-- Active underline -->
                         <span
                             x-show="currentPage === item.value"
                             class="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-cyan-500 to-purple-600"
@@ -186,15 +184,15 @@
     >
         <div class="px-6 py-6 space-y-4">
             <template x-for="item in navItems" :key="item.value">
-                <button
-                    wire:navigate
+                <a
                     :href="item.href"
+                    @click.prevent="handleNav(item); isMobileMenuOpen = false"
                     class="block w-full text-left py-2 transition-colors"
                     :class="currentPage === item.value
-                        ? 'text-cyan-400'
-                        : 'text-gray-400'"
+            ? 'text-cyan-400'
+            : 'text-gray-400'"
                     x-text="item.label"
-                ></button>
+                ></a>
             </template>
 
             <template x-if="!$store.user.is_full_access">
@@ -215,6 +213,34 @@
             isScrolled: false,
             isMobileMenuOpen: false,
             currentPage: null,
+
+            handleNav(item) {
+                if (item.value === 'modules') {
+                    // если уже на главной — просто скроллим
+                    const onHome = window.location.pathname === '/'
+                    if (onHome) {
+                        const el = document.getElementById('modules')
+                        if (el) {
+                            el.scrollIntoView({ behavior: 'smooth' })
+                            this.currentPage = 'modules'
+                        }
+                        return
+                    }
+
+                    // если не на главной — идём на /#modules обычным переходом
+                    window.location.href = '/#modules'
+                    return
+                }
+
+                // остальные страницы — через Livewire SPA, если доступен
+                if (window.Livewire && typeof window.Livewire.navigate === 'function') {
+                    window.Livewire.navigate(item.href)
+                } else {
+                    window.location.href = item.href
+                }
+
+                this.currentPage = item.value
+            },
 
             navItems: [
                 { label: 'Главная', href: '/', value: 'home' },

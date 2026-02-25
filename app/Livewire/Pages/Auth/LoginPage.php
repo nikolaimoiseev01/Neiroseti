@@ -113,7 +113,13 @@ class LoginPage extends Component
 
         Session::regenerate();
 
-        $this->redirectIntended(default: route('account.dashboard', absolute: false), navigate: true);
+        $this->dispatch('user-updated', [
+            'id' => auth()->id(),
+            'name' => auth()->user()->name,
+            'is_full_access' => auth()->user()->is_full_access,
+        ]);
+
+        $this->redirectIntended(default: route('account.dashboard', absolute: false), navigate: false);
     }
 
     public function register(): void
