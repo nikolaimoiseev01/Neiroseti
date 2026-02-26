@@ -70,9 +70,10 @@
 {{--                <a download href="/fixed/contacts-public.pdf" class="text-gray-700 text-sm mt-2">--}}
 {{--                    Контактные данные и реквизиты--}}
 {{--                </a>--}}
-                <a download href="/fixed/oferta-public.pdf" class="text-gray-700 text-sm mt-2">
-                    Публичная оферта
-                </a>
+{{--                <a download href="/fixed/oferta-public.pdf" class="text-gray-700 text-sm mt-2">--}}
+{{--                    Публичная оферта--}}
+{{--                </a>--}}
+                <p class="text-gray-700 text-sm mt-2">Регистрируясь на сайте, вы даете согласие на получение информационных материалов</p>
             </div>
         </div>
 
