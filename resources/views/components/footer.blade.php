@@ -67,9 +67,9 @@
                 Контактные данные: main@neiroseti-prosto.ru
             </p>
             <div class="flex gap-2 mx-auto text-center justify-center">
-                <a download href="/fixed/contacts-public.pdf" class="text-gray-700 text-sm mt-2">
-                    Контактные данные и реквизиты
-                </a>
+{{--                <a download href="/fixed/contacts-public.pdf" class="text-gray-700 text-sm mt-2">--}}
+{{--                    Контактные данные и реквизиты--}}
+{{--                </a>--}}
                 <a download href="/fixed/oferta-public.pdf" class="text-gray-700 text-sm mt-2">
                     Публичная оферта
                 </a>
