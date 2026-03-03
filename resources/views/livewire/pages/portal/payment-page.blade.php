@@ -1,10 +1,12 @@
 <div
-    x-data="paymentComponent()"
+    x-data="paymentComponent({
+        isAuthenticated: {{ auth()->check() ? 'true' : 'false' }}
+    })"
     class="min-h-screen bg-black pt-24 pb-16 px-6"
 >
     <div class="max-w-4xl mx-auto">
 
-        <!-- ВАРИАНТ 1: НЕТ ПОЛНОГО ДОСТУПА (твой текущий экран оплаты) -->
+        <!-- ВАРИАНТ 1: НЕТ ПОЛНОГО ДОСТУПА -->
         <template x-if="!$store.user.is_full_access">
             <div>
                 <!-- Header -->
@@ -31,11 +33,10 @@
                     </p>
                 </div>
 
-                <!-- Content -->
                 <div class="grid grid-cols-2 md:grid-cols-1 gap-8">
 
                     <!-- Pricing -->
-                    <div class="">
+                    <div>
                         <div
                             class="p-8 rounded-2xl
                                    bg-gradient-to-br from-white/10 to-white/5
@@ -74,13 +75,13 @@
 
                             <!-- Pay button -->
                             <a
-                                wire:click="createPayment()"
+                                @click.prevent="handlePay()"
+                                :class="loading ? 'opacity-50 pointer-events-none' : ''"
                                 class="cursor-pointer w-full py-4 rounded-xl text-lg
                                        bg-gradient-to-r from-cyan-500 to-purple-600
                                        hover:scale-105 transition-transform
                                        shadow-2xl shadow-purple-500/30
-                                       flex items-center justify-center gap-2
-                                       disabled:opacity-50 disabled:cursor-not-allowed text-white"
+                                       flex items-center justify-center gap-2 text-white"
                             >
                                 <x-bi-lock class="w-5 h-5" />
                                 <span>
@@ -102,25 +103,11 @@
                                    bg-gradient-to-br from-cyan-500/10 to-transparent
                                    border border-cyan-500/30"
                         >
-                            <div class="flex items-start gap-4">
-                                <div
-                                    class="w-12 h-12 rounded-lg bg-cyan-500/20 flex items-center justify-center flex-shrink-0">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                         viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                         class="lucide lucide-zap w-6 h-6 text-cyan-400" aria-hidden="true">
-                                        <path
-                                            d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"></path>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <h3 class="text-xl mb-2 text-white">Максимальная ценность</h3>
-                                    <p class="text-gray-400 text-sm leading-relaxed">
-                                        Знания, собранные из сотен источников, систематизированные и
-                                        объяснённые — всё это обычно стоит тысячи рублей.
-                                    </p>
-                                </div>
-                            </div>
+                            <h3 class="text-xl mb-2 text-white">Максимальная ценность</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed">
+                                Знания, собранные из сотен источников, систематизированные и
+                                объяснённые — всё это обычно стоит тысячи рублей.
+                            </p>
                         </div>
 
                         <div
@@ -128,29 +115,11 @@
                                    bg-gradient-to-br from-purple-500/10 to-transparent
                                    border border-purple-500/30"
                         >
-                            <div class="flex items-start gap-4">
-                                <div
-                                    class="w-12 h-12 rounded-lg bg-purple-500/20 flex items-center justify-center flex-shrink-0">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                         viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                         class="lucide lucide-sparkles w-6 h-6 text-purple-400"
-                                         aria-hidden="true">
-                                        <path
-                                            d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"></path>
-                                        <path d="M20 2v4"></path>
-                                        <path d="M22 4h-4"></path>
-                                        <circle cx="4" cy="20" r="2"></circle>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <h3 class="text-xl mb-2 text-white">Не просто курс</h3>
-                                    <p class="text-gray-400 text-sm leading-relaxed">
-                                        Это структурированная база знаний, к которой вы сможете
-                                        возвращаться снова и снова.
-                                    </p>
-                                </div>
-                            </div>
+                            <h3 class="text-xl mb-2 text-white">Не просто курс</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed">
+                                Это структурированная база знаний, к которой вы сможете
+                                возвращаться снова и снова.
+                            </p>
                         </div>
 
                         <div
@@ -176,28 +145,10 @@
                         </button>
                     </div>
                 </div>
-
-                <!-- Trust -->
-                <div class="mt-12 pt-8 border-t border-white/10">
-                    <div class="grid grid-cols-3 md:grid-cols-1 gap-8 text-center">
-                        <div>
-                            <div class="text-3xl mb-2">🔒</div>
-                            <div class="text-sm text-gray-400">Безопасная оплата</div>
-                        </div>
-                        <div>
-                            <div class="text-3xl mb-2">♾️</div>
-                            <div class="text-sm text-gray-400">Доступ навсегда</div>
-                        </div>
-                        <div>
-                            <div class="text-3xl mb-2">⚡</div>
-                            <div class="text-sm text-gray-400">Мгновенный доступ</div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </template>
 
-        <!-- ВАРИАНТ 2: ПОЛНЫЙ ДОСТУП УЖЕ ЕСТЬ -->
+        <!-- ВАРИАНТ 2: ДОСТУП УЖЕ ЕСТЬ -->
         <template x-if="$store.user.is_full_access">
             <div>
                 <!-- Header -->
@@ -394,13 +345,75 @@
                 </div>
             </div>
         </template>
+
+        <!-- MODAL -->
+        <div
+            x-show="showAuthModal"
+            x-transition.opacity
+            class="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm"
+            x-cloak
+        >
+            <div
+                @click.away="showAuthModal = false"
+                class="w-full max-w-md mx-4 rounded-2xl bg-zinc-900 border border-white/10 p-6 relative"
+            >
+                <button
+                    @click="showAuthModal = false"
+                    class="absolute right-3 top-3 text-gray-500 hover:text-gray-300 text-xl"
+                >
+                    ×
+                </button>
+
+                <h2 class="text-xl font-semibold text-white mb-3">
+                    Сначала войдите или зарегистрируйтесь
+                </h2>
+
+                <p class="text-sm text-gray-300 mb-5">
+                    Чтобы оплатить доступ и закрепить покупку за аккаунтом,
+                    нужно авторизоваться. После входа просто вернитесь
+                    на эту страницу и снова нажмите «Оплатить».
+                </p>
+
+                <div class="flex flex-col gap-3">
+                    <a
+                        href="{{ route('login') }}"
+                        wire:navigate
+                        class="w-full py-2.5 rounded-xl text-sm font-medium
+                               bg-gradient-to-r from-cyan-500 to-purple-600
+                               text-white text-center"
+                    >
+                        Зарегистрироваться
+                    </a>
+
+                    <a
+                        href="{{ route('login') }}"
+                        wire:navigate
+                        class="w-full py-2.5 rounded-xl text-sm font-medium
+                               border border-white/15 text-gray-200
+                               hover:bg-white/5 text-center"
+                    >
+                        У меня уже есть аккаунт
+                    </a>
+
+                    <button
+                        @click="showAuthModal = false"
+                        class="w-full py-2 text-xs text-gray-400 hover:text-gray-200"
+                    >
+                        Продолжить просмотр
+                    </button>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
 
 <script>
-    function paymentComponent() {
+    function paymentComponent(props = {}) {
         return {
             loading: false,
+            isAuthenticated: props.isAuthenticated ?? false,
+            showAuthModal: false,
 
             features: [
                 'Полный доступ ко всем модулям',
@@ -411,19 +424,24 @@
                 'Обновления контента бесплатно'
             ],
 
-            pay() {
-                if (this.loading) return
+            async handlePay() {
+                if (this.loading) return;
 
-                this.loading = true
+                if (!this.isAuthenticated) {
+                    this.showAuthModal = true;
+                    return;
+                }
 
-                // 🔧 тут потом реальная оплата
-                setTimeout(() => {
-                    window.location.hash = 'account'
-                }, 1000)
+                try {
+                    this.loading = true;
+                    await this.$wire.createPayment();
+                } finally {
+                    this.loading = false;
+                }
             },
 
             back() {
-                window.history.back()
+                window.history.back();
             }
         }
     }
