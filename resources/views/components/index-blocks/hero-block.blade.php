@@ -52,7 +52,7 @@
             x-init="setTimeout(() => show = true, 400)"
             x-show="show"
             x-transition
-            class="md:text-xl text-2xl text-gray-300 mb-4 max-w-3xl mx-auto"
+            class="md:text-xl text-2xl text-white mb-4 max-w-3xl mx-auto"
         >
             Структурированная система знаний об ИИ: нейросети, модели и концепции —
             всё в одном месте, всего за
@@ -65,7 +65,7 @@
             x-init="setTimeout(() => show = true, 600)"
             x-show="show"
             x-transition
-            class="md:text-sm text-base text-gray-500 mb-12"
+            class="md:text-sm text-base text-white mb-12"
         >
             Всё о нейросетях просто и понятно.  Десятки уроков. Ясные объяснения. Никакого информационного шума. <br>Для всех, кто хочет освоить мощный инструмент нового поколения - нейросети.
 
